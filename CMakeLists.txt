@@ -6,6 +6,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 project(koneko-duel)
 
 add_executable(
-    koneko-duel
-    main.cpp
+        koneko-duel
+        main.cpp
+        Menu.cpp
 )

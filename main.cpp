@@ -1,11 +1,16 @@
-//
-// Created by dominik on 27.05.19.
-//
-
 #include <iostream>
+#include "Menu.h"
+
+
+
 
 int main() {
-    std::cout << "koneko-duel will be awesome!" << std::endl;
+
+
+    // printFile(HEADER_FILE);
+
+    Menu menu;
+    menu.initMenu();
 
     return 0;
 }
