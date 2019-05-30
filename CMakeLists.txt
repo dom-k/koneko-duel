@@ -9,4 +9,5 @@ add_executable(
         koneko-duel
         main.cpp
         Menu.cpp
+        Interface.cpp
 )

@@ -1,0 +1,119 @@
+@startuml Class-Diagram-Koneko-Duel
+
+left to right direction
+
+interface MenuInterface {
+    + printMenu(): void
+}
+
+class MainMenu {
+
+}
+
+class DuelMenu {
+
+}
+
+class WorldMapMenu {
+    - mapLevel: int
+    + setMapLevel(int mapLevel): void
+    + getMapLevel(): int
+}
+
+class RewardMenu {
+
+}
+
+note right
+This menu will be shown after a duel.
+Player wil be informed about gained experience points or level-ups.
+end note
+
+abstract class LifeForm {
+    - healthPoints: int
+    - attackPoints: int
+    - level: int
+    + takeDamage(int damage)
+    + getHealthPoints(): int
+    + setHealthPoints(int healthPoints): void
+    + getAttackPoints(): int
+    + setAttackPoints(int attackPoints): void
+    + setLevel(int level): void
+    + getLevel(): int
+}
+
+class Player {
+    - name: string
+    - experiencePoints: int
+    - levelUp()
+    + getName(): string
+    + setName(string name): void
+    + consumeExperiencePoints(int experiencePoints)
+    + getExperiencePoints(): int
+}
+
+note left 
+    consumeExperiencePoints() will 
+    call levelUp()
+end note
+
+abstract class Enemy {
+    - bawl: string
+    - droppableExperiencePoints: int
+    + dropExperiencePoints();
+    + setBawl(string bawl): void
+    + getBawl(): string
+    + getASCIIImage(): string
+}
+
+class Carpa {
+}
+
+note right
+    very simple life form
+end note
+
+class AngryKoneko {
+}
+
+note right
+    AngryKoneko can drop 
+    reward (items, attack / health bonus)
+end note
+
+class GameController {
+    - score: int
+    - state: int
+    - enemies: vector
+    + init(): void
+    + setState(int state): void
+    + generateEnemy(int number = 1): Enemy
+    + startDuel(): void
+    + openPlayerCreation(): void
+    + openWorldMap(): void
+    + openMainMenu(): void
+    + getScore(): int
+    + handleKeyPress(): void
+}
+
+note left
+    GameController sets the appropriate menu,
+    starts events (duel) and generates enemies.
+    State will be filled with constants (e.g. duel-state,
+    world-map-state, reward-state)
+end note
+
+' Relations
+MenuInterface <|-- MainMenu
+MenuInterface <|-- DuelMenu
+MenuInterface <|-- WorldMapMenu
+MenuInterface <|-- RewardMenu
+MenuInterface - GameController
+
+LifeForm <|-- Player
+LifeForm <|-- Enemy
+
+Enemy <|-- Carpa
+Enemy <|-- AngryKoneko
+
+@enduml
