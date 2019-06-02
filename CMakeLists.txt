@@ -7,7 +7,8 @@ project(koneko-duel)
 
 add_executable(
         koneko-duel
-        main.cpp
-        Menu.cpp
-        Interface.cpp
-)
+        src/main.cpp
+        src/Player.cpp src/Player.h
+        src/LifeForm.cpp src/LifeForm.h
+        src/Component/Component.cpp src/Component/Component.h
+        src/Component/PlayerCreationComponent.cpp src/Component/PlayerCreationComponent.h src/Component/MainMenuComponent.cpp src/Component/MainMenuComponent.h)
