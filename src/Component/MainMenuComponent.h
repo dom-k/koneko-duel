@@ -7,7 +7,9 @@
 
 
 class MainMenuComponent {
-
+public:
+    MainMenuComponent();
+    void run();
 };
 
 
