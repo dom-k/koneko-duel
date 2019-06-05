@@ -1,17 +1,13 @@
-//
-// Created by dominik on 03.06.19.
-//
-
+#include <iostream>
 #include "GameController.h"
 #include "Component/MainMenuComponent.h"
 
 GameController::GameController() {
-    this->state = 0;
+    GameController::state = MAIN_MENU;
 }
 
-
 void GameController::setState(int state) {
-
+    this->state = state;
 }
 
 int GameController::getState() {
@@ -23,10 +19,24 @@ int GameController::getScore() {
 }
 
 void GameController::run() {
-    if (this->state == 0) {
-        this->state = MAIN_MENU;
-        MainMenuComponent mainMenuComponent;
-        mainMenuComponent.run();
+    MainMenuComponent* mainMenuComponent = new MainMenuComponent();
+    
+    while (this->state != EXIT) {
+        switch(this->state) {
+            case MAIN_MENU:
+                mainMenuComponent->run(this);
+                break;
+            case PLAYER_CREATION:
+                std::cout << "Player creation coming soon!" << std::endl;
+                this->setState(EXIT);
+                break;
+            case DUEL:
+                break;
+            case WORLD_MAP:
+                break;
+            default:
+                mainMenuComponent->run(this);
+        }
     }
 }
 
