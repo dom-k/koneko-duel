@@ -69,3 +69,6 @@ fabric.properties
 
 # Own build directory.
 build/
+
+# vscode stuff
+.vscode/
