@@ -3,14 +3,6 @@
 Player::Player() {
 }
 
-void Player::setName(std::string name) {
-    this->name = name;
-}
-
-std::string Player::getName() {
-    return this->name;
-}
-
 int Player::getLevel() {
     return this->level;
 }

@@ -3,11 +3,15 @@
 
 
 class LifeForm {
+
 protected:
     int healthPoints;
     int attackPoints;
     int level;
+    std::string name;
+
 public:
+
     void takeDamage(int damage);
 
     int getHealthPoints();
@@ -21,6 +25,10 @@ public:
     void setLevel(int Level);
 
     int getLevel();
+
+    void setName(std::string name);
+
+    std::string getName();
 };
 
 

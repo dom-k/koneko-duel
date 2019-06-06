@@ -1,11 +1,8 @@
-//
-// Created by dominik on 02.06.19.
-//
-
+#include <string>
 #include "LifeForm.h"
 
 void LifeForm::takeDamage(int damage) {
-
+    this->healthPoints -= damage;
 }
 
 int LifeForm::getHealthPoints() {
@@ -13,7 +10,7 @@ int LifeForm::getHealthPoints() {
 }
 
 void LifeForm::setHealthPoints(int healthPoints) {
-
+    this->healthPoints = healthPoints;
 }
 
 int LifeForm::getAttackpoints() {
@@ -21,13 +18,21 @@ int LifeForm::getAttackpoints() {
 }
 
 void LifeForm::setAttackPoints(int attackPoints) {
-
+    this->attackPoints = attackPoints;
 }
 
-void LifeForm::setLevel(int Level) {
-
+void LifeForm::setLevel(int level) {
+    this->level = level;
 }
 
 int LifeForm::getLevel() {
     return 0;
+}
+
+void LifeForm::setName(std::string name) {
+    this->name = name;
+}
+
+std::string LifeForm::getName() {
+    return this->name;
 }

@@ -9,7 +9,7 @@
 #include <string>
 #include "LifeForm.h"
 
-class Enemy : LifeForm {
+class Enemy : public LifeForm {
     std::string bawl;
     std::string asciiImage;
     int droppableExperiencePoints;

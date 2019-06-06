@@ -6,8 +6,7 @@
 #include "LifeForm.h"
 
 
-class Player : LifeForm {
-    std::string name;
+class Player : public LifeForm {
     int experiencePoints;
     std::vector<int> levels = {0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000};
 
@@ -18,9 +17,6 @@ class Player : LifeForm {
 
 public:
     Player();
-    std::string getName();
-
-    void setName(std::string name);
 
     int getLevel();
 

@@ -2,10 +2,12 @@
 #define KONEKO_DUEL_GAMECONTROLLER_H
 
 #include <string>
+#include "Player.h"
 
 class GameController {
     int score{};
     int state;
+    Player* player;
     
 public:
     /**
