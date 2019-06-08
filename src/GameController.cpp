@@ -40,8 +40,7 @@ void GameController::run() {
                 this->setState(DUEL);
                 break;
             case DUEL:
-                std::cout << "Duel is coming soon." << std::endl;
-                // duelComponent->run(this);
+                duelComponent->run(this);
                 this->setState(EXIT);
                 break;
             case WORLD_MAP:
