@@ -14,7 +14,9 @@ add_executable(
         src/LifeForm.cpp src/LifeForm.h
         src/DatabaseAdapter.cpp src/DatabaseAdapter.h
         src/Component/Component.cpp src/Component/Component.h
-        src/Component/PlayerCreationComponent.cpp src/Component/PlayerCreationComponent.h src/Component/MainMenuComponent.cpp src/Component/MainMenuComponent.h src/Component/DuelComponent.cpp src/Component/DuelComponent.h src/Enemy.h src/Carpa.cpp src/Carpa.h src/GameController.cpp src/GameController.h src/Component/WorldMapComponent.cpp src/Component/WorldMapComponent.h)
+        src/Component/PlayerCreationComponent.cpp src/Component/PlayerCreationComponent.h src/Component/MainMenuComponent.cpp src/Component/MainMenuComponent.h src/Component/DuelComponent.cpp src/Component/DuelComponent.h src/Enemy.h src/Carpa.cpp src/Carpa.h src/GameController.cpp src/GameController.h src/Component/WorldMapComponent.cpp src/Component/WorldMapComponent.h
+        src/DAO/EnemyDAO.cpp src/DAO/EnemyDAO.h
+        )
 
 if (SQLITE3_FOUND)
   include_directories(${SQLITE3_INCLUDE_DIRS})
