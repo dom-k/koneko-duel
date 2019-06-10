@@ -23,9 +23,9 @@ int GameController::getScore() {
 }
 
 void GameController::run() {
-    MainMenuComponent* mainMenuComponent = new MainMenuComponent();
-    PlayerCreationComponent* playerCreationComponent = new PlayerCreationComponent();
-    DuelComponent* duelComponent = new DuelComponent();
+    MainMenuComponent* main_menu_component = new MainMenuComponent();
+    PlayerCreationComponent* player_creation_component = new PlayerCreationComponent();
+    DuelComponent* duel_component = new DuelComponent();
 
     // Player* player = new Player();
     this->player->resetPlayer();
@@ -33,14 +33,15 @@ void GameController::run() {
     while (this->state != EXIT) {
         switch(this->state) {
             case MAIN_MENU:
-                mainMenuComponent->run(this);
+                main_menu_component
+        ->run(this);
                 break;
             case PLAYER_CREATION:
-                playerCreationComponent->run(this->player);
+                player_creation_component->run(this->player);
                 this->setState(DUEL);
                 break;
             case DUEL:
-                duelComponent->run(this);
+                duel_component->run(this);
                 this->setState(EXIT);
                 break;
             case WORLD_MAP:
@@ -48,7 +49,8 @@ void GameController::run() {
                 this->setState(EXIT);
                 break;
             default:
-                mainMenuComponent->run(this);
+                main_menu_component
+        ->run(this);
         }
     }
 }
