@@ -11,8 +11,8 @@ class DuelComponent {
   void GenerateEnemies(int number = 1);
 
  public:
-  void Run(GameController* game_controller);
-  void StartNewDuel(Player player);
+  void Run(GameController& game_controller);
+  void StartNewDuel(Player& player);
 };
 
 #endif  // KONEKO_DUEL_DUELCOMPONENT_H

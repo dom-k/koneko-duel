@@ -5,9 +5,9 @@ EnemyDAO::EnemyDAO() {
   this->database_adapter = database_adapter;
 }
 
-void EnemyDAO::AddEnemy(Enemy* enemy) {}
+void EnemyDAO::AddEnemy(Enemy& enemy) {}
 
-void EnemyDAO::DeleteEnemy(Enemy* enemy) {}
+void EnemyDAO::DeleteEnemy(Enemy& enemy) {}
 
 Enemy EnemyDAO::GetRandomEnemy() {
   Enemy* enemy = new Enemy();

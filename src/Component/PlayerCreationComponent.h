@@ -5,7 +5,7 @@
 
 class PlayerCreationComponent {
  public:
-  void Run(Player* player);
+  void Run(Player& player);
 };
 
 #endif  // KONEKO_DUEL_PLAYERCREATIONCOMPONENT_H

@@ -1,6 +1,6 @@
 #include "PlayerCreationComponent.h"
 
-void PlayerCreationComponent::Run(Player* player) {
+void PlayerCreationComponent::Run(Player& player) {
   int error = 0;
   std::string name;
   std::string confirm;
@@ -14,7 +14,7 @@ void PlayerCreationComponent::Run(Player* player) {
 
     if (confirm == "y" || confirm == "Y" || confirm == "yes" ||
         confirm == "Yes") {
-      player->SetName(name);
+      player.SetName(name);
       error = 1;
     }
   } while (error == 0);

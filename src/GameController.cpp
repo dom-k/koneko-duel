@@ -26,14 +26,14 @@ void GameController::Run() {
   while (this->state != EXIT) {
     switch (this->state) {
       case MAIN_MENU:
-        main_menu_component.Run(this);
+        main_menu_component.Run(*this);
         break;
       case PLAYER_CREATION:
-        player_creation_component.Run(this->player);
+        player_creation_component.Run(*player);
         this->SetState(DUEL);
         break;
       case DUEL:
-        duel_component.Run(this);
+        duel_component.Run(*this);
         this->SetState(EXIT);
         break;
       case WORLD_MAP:
@@ -41,7 +41,7 @@ void GameController::Run() {
         this->SetState(EXIT);
         break;
       default:
-        main_menu_component.Run(this);
+        main_menu_component.Run(*this);
     }
   }
 }

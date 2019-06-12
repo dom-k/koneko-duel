@@ -10,8 +10,8 @@ class EnemyDAO {
 
  public:
   EnemyDAO();
-  void AddEnemy(Enemy* enemy);
-  void DeleteEnemy(Enemy* enemy);
+  void AddEnemy(Enemy& enemy);
+  void DeleteEnemy(Enemy& enemy);
   Enemy GetRandomEnemy();
 };
 

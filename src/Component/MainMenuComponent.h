@@ -6,7 +6,7 @@
 class MainMenuComponent {
  public:
   MainMenuComponent();
-  void Run(GameController* game_controller);
+  void Run(GameController& game_controller);
 };
 
 #endif  // KONEKO_DUEL_MAINMENUCOMPONENT_H

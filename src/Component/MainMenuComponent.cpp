@@ -4,7 +4,7 @@
 
 MainMenuComponent::MainMenuComponent() {}
 
-void MainMenuComponent::Run(GameController* GameController) {
+void MainMenuComponent::Run(GameController& GameController) {
   char input;
 
   std::cout << "-- Koneko Duel --" << std::endl << std::endl;
@@ -13,10 +13,10 @@ void MainMenuComponent::Run(GameController* GameController) {
   std::cin >> input;
 
   if (input == 'X' || input == 'x') {
-    GameController->SetState(GameController::EXIT);
+    GameController.SetState(GameController::EXIT);
   }
 
   if (input == 'S' || input == 's') {
-    GameController->SetState(GameController::PLAYER_CREATION);
+    GameController.SetState(GameController::PLAYER_CREATION);
   }
 }
