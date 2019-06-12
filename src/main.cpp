@@ -3,7 +3,7 @@
 
 int main() {
     GameController gameController;
-    gameController.run();
+    gameController.Run();
 
     return 0;
 }

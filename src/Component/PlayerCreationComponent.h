@@ -4,10 +4,8 @@
 #include "../Player.h"
 
 class PlayerCreationComponent {
-public:
-    void run(Player* player);
-
+ public:
+  void Run(Player* player);
 };
 
-
-#endif //KONEKO_DUEL_PLAYERCREATIONCOMPONENT_H
+#endif  // KONEKO_DUEL_PLAYERCREATIONCOMPONENT_H

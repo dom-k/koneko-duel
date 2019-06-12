@@ -11,8 +11,8 @@ void EnemyDAO::DeleteEnemy(Enemy* enemy) {}
 
 Enemy EnemyDAO::GetRandomEnemy() {
   Enemy* enemy = new Enemy();
-  this->database_adapter->exec(
+  this->database_adapter->Exec(
       "SELECT * FROM ENEMIES ORDER BY RANDOM() LIMIT 1");
-    
+
   return *enemy;
 }

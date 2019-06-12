@@ -12,11 +12,11 @@ class DatabaseAdapter {
   const char *data;
   char *err_msg = 0;
   // TODO: Change ** to &
-  static int callback(void *data, int argc, char **argv, char **az_col_name);
+  static int Callback(void *data, int argc, char **argv, char **az_col_name);
 
  public:
   DatabaseAdapter();
-  void exec(const char *sql_query);
+  void Exec(const char *sql_query);
   ~DatabaseAdapter();
 };
 

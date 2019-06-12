@@ -7,27 +7,27 @@
 
 
 class Player : public LifeForm {
-    int experiencePoints;
+    int experience_points;
     std::vector<int> levels = {0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000};
 
     /**
      * Increases playere level and therefore attack and health points.
      */
-    void levelUp();
+    void LevelUp();
 
 public:
     Player();
 
-    int getLevel();
+    int GetLevel();
 
     /**
      * Reset player's level and XP.
      */
-    void resetPlayer();
+    void ResetPlayer();
 
-    void consumeExperiencePoints(int experiencePoints);
+    void ConsumeExperiencePoints(int experience_points);
 
-    int getExperiencePoints();
+    int GetExperiencePoints();
 };
 
 

@@ -1,16 +1,12 @@
-#include <vector>
 #include "DuelComponent.h"
+#include <vector>
 #include "../DAO/EnemyDAO.h"
 
-void DuelComponent::generateEnemies(int number) {
-    Enemy* enemy = new Enemy();
-}
+void DuelComponent::GenerateEnemies(int number) { Enemy* enemy = new Enemy(); }
 
-void DuelComponent::startNewDuel(Player player) {
+void DuelComponent::StartNewDuel(Player player) {}
 
-}
-
-void DuelComponent::run(GameController* gameController) {
+void DuelComponent::Run(GameController* game_controller) {
   Enemy* enemy = new Enemy();
   EnemyDAO* enemy_DAO = new EnemyDAO();
   *enemy = enemy_DAO->GetRandomEnemy();

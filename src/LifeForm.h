@@ -1,35 +1,33 @@
 #ifndef KONEKO_DUEL_LIFEFORM_H
 #define KONEKO_DUEL_LIFEFORM_H
 
+#include <iostream>
 
 class LifeForm {
+ protected:
+  int health_points;
+  int attack_points;
+  int level;
+  std::string name;
 
-protected:
-    int healthPoints;
-    int attackPoints;
-    int level;
-    std::string name;
+ public:
+  void TakeDamage(int damage);
 
-public:
+  int GetHealthPoints();
 
-    void takeDamage(int damage);
+  void SetHealthPoints(int health_points);
 
-    int getHealthPoints();
+  int GetAttackpoints();
 
-    void setHealthPoints(int healthPoints);
+  void SetAttackPoints(int attack_points);
 
-    int getAttackpoints();
+  void SetLevel(int Level);
 
-    void setAttackPoints(int attackPoints);
+  int GetLevel();
 
-    void setLevel(int Level);
+  void SetName(std::string name);
 
-    int getLevel();
-
-    void setName(std::string name);
-
-    std::string getName();
+  std::string GetName();
 };
 
-
-#endif //KONEKO_DUEL_LIFEFORM_H
+#endif  // KONEKO_DUEL_LIFEFORM_H

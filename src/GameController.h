@@ -21,13 +21,13 @@ public:
 
     GameController();
 
-    void setState(int state);
+    void SetState(int state);
 
-    int getState();
+    int GetState();
 
-    int getScore();
+    int GetScore();
 
-    void run();
+    void Run();
 };
 
 

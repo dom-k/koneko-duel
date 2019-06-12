@@ -1,31 +1,21 @@
-//
-// Created by dominik on 03.06.19.
-//
-
 #ifndef KONEKO_DUEL_ENEMY_H
 #define KONEKO_DUEL_ENEMY_H
-
 
 #include <string>
 #include "LifeForm.h"
 
 class Enemy : public LifeForm {
-    std::string asciiImage;
-    int droppableExperiencePoints;
+  std::string ascii_image;
+  int droppable_experiencepoints;
 
-public:
-    int dropExperiencePoints() {
-        return this->droppableExperiencePoints;
-    };
+ public:
+  int DropExperiencePoints() { return this->droppable_experiencepoints; };
 
-    void setAsciiImage(std::string asciiImage) {
-        this->asciiImage = asciiImage;
-    };
+  void SetAsciiImage(std::string ascii_image) {
+    this->ascii_image = ascii_image;
+  };
 
-    std::string getAsciiImage() {
-        return this->asciiImage;
-    };
+  std::string GetAsciiImage() { return this->ascii_image; };
 };
 
-
-#endif //KONEKO_DUEL_ENEMY_H
+#endif  // KONEKO_DUEL_ENEMY_H

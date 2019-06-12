@@ -1,38 +1,23 @@
-#include <string>
 #include "LifeForm.h"
 
-void LifeForm::takeDamage(int damage) {
-    this->healthPoints -= damage;
+void LifeForm::TakeDamage(int damage) { this->health_points -= damage; }
+
+int LifeForm::GetHealthPoints() { return 0; }
+
+void LifeForm::SetHealthPoints(int health_points) {
+  this->health_points = health_points;
 }
 
-int LifeForm::getHealthPoints() {
-    return 0;
+int LifeForm::GetAttackpoints() { return 0; }
+
+void LifeForm::SetAttackPoints(int attack_points) {
+  this->attack_points = attack_points;
 }
 
-void LifeForm::setHealthPoints(int healthPoints) {
-    this->healthPoints = healthPoints;
-}
+void LifeForm::SetLevel(int level) { this->level = level; }
 
-int LifeForm::getAttackpoints() {
-    return 0;
-}
+int LifeForm::GetLevel() { return 0; }
 
-void LifeForm::setAttackPoints(int attackPoints) {
-    this->attackPoints = attackPoints;
-}
+void LifeForm::SetName(std::string name) { this->name = name; }
 
-void LifeForm::setLevel(int level) {
-    this->level = level;
-}
-
-int LifeForm::getLevel() {
-    return 0;
-}
-
-void LifeForm::setName(std::string name) {
-    this->name = name;
-}
-
-std::string LifeForm::getName() {
-    return this->name;
-}
+std::string LifeForm::GetName() { return this->name; }
