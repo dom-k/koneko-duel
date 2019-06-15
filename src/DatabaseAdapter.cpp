@@ -1,4 +1,5 @@
 #include "DatabaseAdapter.h"
+#include <iostream>
 
 DatabaseAdapter::DatabaseAdapter() {
   if (sqlite3_open(this->db_file, &this->db) != SQLITE_OK) {
@@ -10,8 +11,7 @@ DatabaseAdapter::DatabaseAdapter() {
 
 DatabaseAdapter::~DatabaseAdapter() { sqlite3_close(this->db); }
 
-int DatabaseAdapter::Callback(void* data, int argc, char** argv,
-                              char** az_col_name) {
+int DatabaseAdapter::Callback(int argc, char** argv, char** az_col_name) {
   for (int i = 0; i < argc; i++) {
     std::cout << az_col_name[i] << " = " << (argv[i] ? argv[i] : "NULL")
               << std::endl;
@@ -21,13 +21,21 @@ int DatabaseAdapter::Callback(void* data, int argc, char** argv,
   return 0;
 }
 
-void DatabaseAdapter::Exec(const char* sql_query) {
-  if (sqlite3_exec(db, sql_query, this->Callback, (void*)data,
-                   &this->err_msg) == SQLITE_OK) {
-    std::cout << "Operation done succesfully" << std::endl;
-  } else {
-    std::cerr << "SQL error: " << this->err_msg << std::endl;
-    sqlite3_free(this->err_msg);
-    return;
+  int DatabaseAdapter::C_callback(void* data, int argc, char** argv,
+                                  char** az_col_name) {
+    DatabaseAdapter* database_adapter =
+        // reinterpret_cast<DatabaseAdapter*>(data);
+        static_cast<DatabaseAdapter*>(data);
+    return database_adapter->Callback(argc, argv, az_col_name);
   }
-}
+
+  void DatabaseAdapter::Exec(const char* sql_query) {
+    if (sqlite3_exec(db, sql_query, this->C_callback, this, &this->err_msg) ==
+        SQLITE_OK) {
+      std::cout << "Operation done succesfully" << std::endl;
+    } else {
+      std::cerr << "SQL error: " << this->err_msg << std::endl;
+      sqlite3_free(this->err_msg);
+      return;
+    }
+  }

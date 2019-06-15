@@ -10,9 +10,9 @@ void EnemyDAO::AddEnemy(Enemy& enemy) {}
 void EnemyDAO::DeleteEnemy(Enemy& enemy) {}
 
 Enemy EnemyDAO::GetRandomEnemy() {
-  Enemy* enemy = new Enemy();
+  Enemy enemy = Enemy();
   this->database_adapter->Exec(
       "SELECT * FROM ENEMIES ORDER BY RANDOM() LIMIT 1");
 
-  return *enemy;
+  return enemy;
 }
