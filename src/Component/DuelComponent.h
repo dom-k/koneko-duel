@@ -2,13 +2,13 @@
 #define KONEKO_DUEL_DUELCOMPONENT_H
 
 #include <vector>
-#include "../Enemy.h"
+#include "../Models/Enemy.h"
 #include "../GameController.h"
 #include "../Player.h"
 
 class DuelComponent {
   std::vector<Enemy> enemies;
-  void GenerateEnemies(int number = 1);
+  std::vector<Enemy> GetRandomEnemy(int number = 1);
 
  public:
   void Run(GameController& game_controller);

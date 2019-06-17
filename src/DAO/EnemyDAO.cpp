@@ -1,3 +1,5 @@
+#include <iostream>
+#include "../KeyValueStore.h"
 #include "EnemyDAO.h"
 
 EnemyDAO::EnemyDAO() {
@@ -11,8 +13,14 @@ void EnemyDAO::DeleteEnemy(Enemy& enemy) {}
 
 Enemy EnemyDAO::GetRandomEnemy() {
   Enemy enemy = Enemy();
-  this->database_adapter->Exec(
+  std::vector<KeyValueStore> db_result;
+
+  db_result = this->database_adapter->Exec(
       "SELECT * FROM ENEMIES ORDER BY RANDOM() LIMIT 1");
+
+  for (auto entry : db_result) {
+    std::cout << entry.GetValue() << "\n";
+  }
 
   return enemy;
 }

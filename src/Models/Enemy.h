@@ -2,13 +2,17 @@
 #define KONEKO_DUEL_ENEMY_H
 
 #include <string>
-#include "LifeForm.h"
+#include "../LifeForm.h"
 
 class Enemy : public LifeForm {
+ private:
+  int id;
   std::string ascii_image;
   int droppable_experiencepoints;
 
  public:
+  void SetId(int);
+  int GetId();
   int DropExperiencePoints() { return this->droppable_experiencepoints; };
 
   void SetAsciiImage(std::string ascii_image) {

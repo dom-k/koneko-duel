@@ -2,7 +2,7 @@
 #define KONEKO_DUEL_ENEMYDAO_H
 
 #include "../DatabaseAdapter.h"
-#include "../Enemy.h"
+#include "../Models/Enemy.h"
 
 class EnemyDAO {
  private:

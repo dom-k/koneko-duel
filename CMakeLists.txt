@@ -13,8 +13,10 @@ add_executable (
         src/Player.cpp src/Player.h
         src/LifeForm.cpp src/LifeForm.h
         src/DatabaseAdapter.cpp src/DatabaseAdapter.h
-        src/Component/PlayerCreationComponent.cpp src/Component/PlayerCreationComponent.h src/Component/MainMenuComponent.cpp src/Component/MainMenuComponent.h src/Component/DuelComponent.cpp src/Component/DuelComponent.h src/Enemy.h src/Carpa.cpp src/Carpa.h src/GameController.cpp src/GameController.h
+        src/Component/PlayerCreationComponent.cpp src/Component/PlayerCreationComponent.h src/Component/MainMenuComponent.cpp src/Component/MainMenuComponent.h src/Component/DuelComponent.cpp src/Component/DuelComponent.h src/GameController.cpp src/GameController.h
         src/DAO/EnemyDAO.cpp src/DAO/EnemyDAO.h
+        src/Models/Enemy.h
+        src/KeyValueStore.cpp src/KeyValueStore.h
 )
 
 if (SQLITE3_FOUND)

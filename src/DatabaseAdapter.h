@@ -3,9 +3,11 @@
 
 #include <sqlite3.h>
 #include <vector>
+#include "KeyValueStore.h"
 
 class DatabaseAdapter {
  private:
+  std::vector <KeyValueStore> db_result;
   const char *db_file = "../assets/koneko-duel.sqlite3";
   sqlite3 *db;
   sqlite3_stmt *stmt;
@@ -13,11 +15,10 @@ class DatabaseAdapter {
   char *err_msg = 0;
   static int C_callback(void *data, int argc, char **argv, char **az_col_name);
   int Callback(int argc, char **argv, char **az_col_name);
-  std::vector<char **> databaseResult;
 
  public:
   DatabaseAdapter();
-  void Exec(const char *sql_query);
+  std::vector <KeyValueStore> Exec(const char *sql_query);
   ~DatabaseAdapter();
 };
 #endif  // KONEKO_DUEL_DATABASEADAPTER_H

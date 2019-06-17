@@ -1,5 +1,5 @@
-#include "GameController.h"
 #include <iostream>
+#include "GameController.h"
 #include "Component/DuelComponent.h"
 #include "Component/MainMenuComponent.h"
 #include "Component/PlayerCreationComponent.h"
@@ -17,6 +17,7 @@ int GameController::GetState() { return this->state; }
 int GameController::GetScore() { return this->score; }
 
 void GameController::Run() {
+  
   MainMenuComponent main_menu_component = MainMenuComponent();
   PlayerCreationComponent player_creation_component = PlayerCreationComponent();
   DuelComponent duel_component = DuelComponent();
@@ -39,6 +40,8 @@ void GameController::Run() {
       case WORLD_MAP:
         std::cout << "Worldmap is coming soon." << std::endl;
         this->SetState(EXIT);
+        break;
+      case EXIT:
         break;
       default:
         main_menu_component.Run(*this);
