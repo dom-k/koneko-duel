@@ -3,13 +3,13 @@
 #include "../KeyValueStore.h"
 
 EnemyDAO::EnemyDAO() {
-  DatabaseAdapter* database_adapter = new DatabaseAdapter();
+  DatabaseAdapter *database_adapter = new DatabaseAdapter();
   this->database_adapter = database_adapter;
 }
 
-void EnemyDAO::AddEnemy(Enemy& enemy) {}
+void EnemyDAO::AddEnemy(Enemy &enemy) {}
 
-void EnemyDAO::DeleteEnemy(Enemy& enemy) {}
+void EnemyDAO::DeleteEnemy(Enemy &enemy) {}
 
 Enemy EnemyDAO::GetRandomEnemy() {
   Enemy enemy = Enemy();
@@ -20,8 +20,7 @@ Enemy EnemyDAO::GetRandomEnemy() {
 
   // TODO: Use Try Catch & Create class function.
   for (auto entry : db_result) {
-    if (entry.GetKey() == "Name")
-      enemy.SetName(entry.GetValue());
+    if (entry.GetKey() == "Name") enemy.SetName(entry.GetValue());
 
     if (entry.GetKey() == "HealthPoints")
       enemy.SetHealthPoints(std::stoi(entry.GetValue()));
@@ -29,19 +28,11 @@ Enemy EnemyDAO::GetRandomEnemy() {
     if (entry.GetKey() == "AttackPoints")
       enemy.SetAttackPoints(std::stoi(entry.GetValue()));
 
-    if (entry.GetKey() == "AsciiImage")
-      enemy.SetAsciiImage(entry.GetValue());
+    if (entry.GetKey() == "AsciiImage") enemy.SetAsciiImage(entry.GetValue());
 
     if (entry.GetKey() == "DroppableExperiencePoints")
       enemy.SetDroppableExperiencePoints(std::stoi(entry.GetValue()));
   }
-
-
-  std::cout << "Name: " << enemy.GetName() << "\n";
-  std::cout << "HP: "<< enemy.GetHealthPoints() << "\n";
-  std::cout << "ATK: " << enemy.GetAttackpoints() << "\n";
-  std::cout << "ASCII: " << enemy.GetAsciiImage() << "\n";
-  std::cout << "XP: " << enemy.DropExperiencePoints() << "\n";
 
   return enemy;
 }

@@ -16,6 +16,9 @@ std::vector<Enemy> DuelComponent::GetRandomEnemy(int number) {
 void DuelComponent::StartNewDuel(Player& player) {}
 
 void DuelComponent::Run(GameController& game_controller) {
-  Enemy enemy = Enemy();
-  std::vector<Enemy> enemies = this->GetRandomEnemy(1);
+  std::vector<Enemy> enemies = this->GetRandomEnemy(5);
+
+  for (auto enemy : enemies) {
+    std::cout << enemy.GetName() << "\n";
+  }
 }
