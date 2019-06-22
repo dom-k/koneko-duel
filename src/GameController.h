@@ -26,6 +26,8 @@ class GameController {
 
   int GetScore();
 
+  Player* GetPlayer();
+
   void Run();
 };
 

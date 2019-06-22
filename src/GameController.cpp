@@ -16,6 +16,10 @@ int GameController::GetState() { return this->state; }
 
 int GameController::GetScore() { return this->score; }
 
+Player* GameController::GetPlayer() {
+  return this->player;
+}
+
 void GameController::Run() {
   
   MainMenuComponent main_menu_component = MainMenuComponent();
