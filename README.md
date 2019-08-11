@@ -8,10 +8,12 @@ A cute little terminal game against boredom 😸.
 
 ## Requirements
 
-### libsqlite3-dev
+### libsqlite3-dev and cmake
 
-```sh
-sudo apt install libsqlite3-dev
+```sh 
+sudo apt install \
+    libsqlite3-dev \
+    make
 ```
 
 ## How to build and run
