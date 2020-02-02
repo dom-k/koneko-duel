@@ -17,7 +17,8 @@ void GameManager::run()
 
     while (m_gameIsRunning)
     {
-        std::cout << "You are wandering around the world.\n";
+        printPlayerStatus(player);
+        std::cout << "You are wandering around the world.\n\n";
 
         if (enemyAppears())
         {
@@ -25,11 +26,13 @@ void GameManager::run()
         }
         else
         {
-            std::cout << "Nothing happens. Press any button. Wait ... what's a button?\n";
+            std::cout << "Nothing happens. Press any button.\n";
             std::cin >> input;
             if (input == EXIT_BUTTON)
                 m_gameIsRunning = false;
         }
+
+        std::cout << '\n';
     }
 }
 
@@ -39,6 +42,26 @@ Player GameManager::getNewPlayer()
     Player player = Player(name);
 
     return player;
+}
+
+void GameManager::printTitle()
+{
+    std::cout << "---------------------\n";
+    std::cout << "K O N E K O - D U E L\n";
+    std::cout << "---------------------\n";
+    std::cout << "\n";
+    printKeyboardOptions();
+    std::cout << "\n";
+}
+
+void GameManager::printPlayerStatus(Player player)
+{
+    std::cout << player.getName() << ": { ";
+    std::cout << "HP: " << player.getHealthPoints() << " | ";
+    std::cout << "ATK: " << player.getBaseAttack() << " | ";
+    std::cout << "LVL: " << player.getLevel() << " | ";
+    std::cout << "XP: " << player.getExperiencePoints() << " | ";
+    std::cout << "G: " << player.getGold() << " }\n";
 }
 
 std::string GameManager::getPlayerName()
@@ -60,21 +83,20 @@ void GameManager::startDuel(Player &player)
     char input;
     int playerLevel{player.getLevel()};
     bool duelling{true};
+    bool playersTurn{true};
     Enemy enemy = spawnNewEnemy(playerLevel);
+    int enemyBaseAttack{enemy.getBaseAttack()};
 
-    std::cout << "Hey, watch out " << player.getName() << "!\n";
-    std::cout << "An enemy is blocking your path!\n";
-    std::cout << "Name: " << enemy.getName() << '\n';
-    std::cout << "ATK: " << enemy.getBaseAttack() << '\n';
-    std::cout << "HP: " << enemy.getHealthPoints() << '\n';
-    std::cout << "G: " << enemy.dropGold() << '\n';
+    std::cout << "Hey, watch out " << player.getName() << "! "
+              << "An enemy is blocking the path!\n\n";
 
     if (enemyAttacksFirst())
     {
         std::cout << "Enemy quickly attacks!\n";
-        int enemyBaseAttack{enemy.getBaseAttack()};
-        int enemyActualAttack = RandomGenerator::GetInstance()->getRandomNumber(0, enemyBaseAttack);
+        printEnemyStatus(enemy);
+        std::cout << '\n';
 
+        int enemyActualAttack = RandomGenerator::GetInstance()->getRandomNumber(0, enemyBaseAttack);
         if (enemyActualAttack != 0)
         {
             std::cout << "Ouch! You lose " << enemyActualAttack << " HP!\n";
@@ -84,12 +106,16 @@ void GameManager::startDuel(Player &player)
         {
             std::cout << "Hah! The enemy missed the attack!\n";
         }
+
+        std::cout << '\n';
     }
 
     while (duelling)
     {
-
+        // Player's turn.
+        printPlayerStatus(player);
         std::cout << "What's your next step?\n";
+        printKeyboardOptions();
         std::cin >> input;
 
         if (input == EXIT_BUTTON)
@@ -105,8 +131,11 @@ void GameManager::startDuel(Player &player)
                 std::cout << "You attack the enemy with " << playerActualAttack << " ATK!\n";
                 enemy.decreaseHealthPoints(playerActualAttack);
 
-                if (enemy.getHealthPoints() <= 0) {
-                    std::cout << "Enemy is dead! You win!\n";
+                if (enemy.getHealthPoints() <= 0)
+                {
+                    int droppedGoldFromEnemy = enemy.dropGold();
+                    std::cout << "Enemy dies and drops " << droppedGoldFromEnemy << " G!";
+                    player.addGold(droppedGoldFromEnemy);
                     duelling = false;
                 }
             }
@@ -115,6 +144,25 @@ void GameManager::startDuel(Player &player)
                 std::cout << "Oh no, that's a miss.\n";
             }
         }
+
+        if (enemy.getHealthPoints() > 0)
+        {
+            printEnemyStatus(enemy);
+            std::cout << "Enemy's turn. Enemy attacks ...";
+            int enemyActualAttack = RandomGenerator::GetInstance()->getRandomNumber(0, enemyBaseAttack);
+
+            if (enemyActualAttack != 0)
+            {
+                std::cout << "Ouch! You lose " << enemyActualAttack << " HP!\n\n";
+                player.decreaseHealthPoints(enemyActualAttack);
+            }
+            else
+            {
+                std::cout << "Hah! The enemy missed the attack!\n\n";
+            }
+        }
+
+        std::cout << '\n';
 
         if (input == FLEE_BUTTON)
             std::cout << "You are trying to flee but the developer didn't implement fleeing yet. :/\n";
@@ -126,20 +174,21 @@ bool GameManager::enemyAttacksFirst()
     return RandomGenerator::GetInstance()->getRandomNumber(0, 1) == 1;
 }
 
-void GameManager::printTitle()
-{
-    std::cout << "---------------------\n";
-    std::cout << "K O N E K O - D U E L\n";
-    std::cout << "---------------------\n";
-    std::cout << "\n";
-    std::cout << "a – Attack\n";
-    std::cout << "f – Flee\n";
-    std::cout << "x – Exit\n";
-    std::cout << "\n";
-}
-
 Enemy GameManager::spawnNewEnemy(int level)
 {
     Enemy enemy = enemyController.getRandomlyGeneratedEnemy();
     return enemy;
+}
+
+void GameManager::printEnemyStatus(Enemy enemy)
+{
+    std::cout << "Enemy '" << enemy.getName() << "': { ";
+    std::cout << "HP: " << enemy.getHealthPoints() << " | ";
+    std::cout << "ATK: " << enemy.getBaseAttack() << " | ";
+    std::cout << "LVL: " << enemy.getLevel() << " }\n";
+}
+
+void GameManager::printKeyboardOptions()
+{
+    std::cout << "a – Attack | f – Flee | x – Exit\n";
 }

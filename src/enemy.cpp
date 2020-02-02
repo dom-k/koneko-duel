@@ -20,6 +20,11 @@ int Enemy::dropGold()
     return m_goldToDrop;
 }
 
+int Enemy::getLevel()
+{
+    return m_level;
+}
+
 int Enemy::dropExperiencePoints()
 {
     return m_experiencePointsToDrop;

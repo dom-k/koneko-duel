@@ -7,6 +7,7 @@ public:
     Enemy(std::string name, int level, int healthPoints, int baseAttack, int goldToDrop, int experiencePointsToDrop);
     std::string getName();
     int dropGold();
+    int getLevel();
     int dropExperiencePoints();
     int getBaseAttack();
     int getHealthPoints();
