@@ -1,9 +1,10 @@
 #include <iostream>
-#include "GameController.h"
+#include "gamemanager.h"
 
-int main() {
-    GameController gameController;
-    gameController.Run();
+int main()
+{
+    GameManager gameManager = GameManager();
+    gameManager.run();
 
     return 0;
 }
