@@ -14,6 +14,7 @@ public:
     void addExperiencePoints(int experiencePointsToAdd);
     int getExperiencePoints();
     int getLevel();
+    void printStatusBar();
 
 private:
     std::string m_name;

@@ -1,5 +1,8 @@
 #include "player.h"
+#include <iostream>
+
 #include "randomgenerator.h"
+
 
 Player::Player(std::string name)
 {
@@ -63,10 +66,19 @@ int Player::getExperiencePoints()
     return m_experiencePoints;
 }
 
-
 int Player::getLevel()
 {
     return m_level;
+}
+
+void Player::printStatusBar()
+{
+    std::cout << m_name << ": { ";
+    std::cout << "HP: " << m_healthPoints << " | ";
+    std::cout << "ATK: " << m_baseAttack << " | ";
+    std::cout << "LVL: " << m_level << " | ";
+    std::cout << "XP: " << m_experiencePoints << " | ";
+    std::cout << "G: " << m_gold << " }\n";
 }
 
 void Player::levelUp()
@@ -78,7 +90,7 @@ void Player::levelUp()
     int maxNewAttack = m_baseAttack + 8;
     int minNewHealth = m_healthPoints + 3;
     int maxNewHealth = m_healthPoints + 10;
-    
+
     m_baseAttack = RandomGenerator::GetInstance()->getRandomNumber(
         minNewAttack, maxNewAttack);
     m_healthPoints = RandomGenerator::GetInstance()->getRandomNumber(

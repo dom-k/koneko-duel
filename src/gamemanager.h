@@ -23,12 +23,12 @@ private:
 private:
     Player getNewPlayer();
     void printTitle();
-    void printPlayerStatus(Player player);
+    void printPlayerStatusBar(Player player);
     std::string getPlayerName();
     bool enemyAppears();
     void startDuel(Player &player);
     bool enemyAttacksFirst();
     Enemy spawnNewEnemy(int level);
     void printEnemyStatus(Enemy enemy);
-    void printKeyboardOptions();
+    void printControlOptions();
 };

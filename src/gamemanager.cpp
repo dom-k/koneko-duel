@@ -14,25 +14,19 @@ void GameManager::run()
     char input;
 
     printTitle();
+    printControlOptions();
 
     while (m_gameIsRunning)
     {
-        printPlayerStatus(player);
-        std::cout << "You are wandering around the world.\n\n";
+        player.printStatusBar();
 
-        if (enemyAppears())
-        {
-            startDuel(player);
-        }
-        else
-        {
-            std::cout << "Nothing happens. Press any button.\n";
-            std::cin >> input;
-            if (input == EXIT_BUTTON)
-                m_gameIsRunning = false;
-        }
+        std::cout << "You are wandering around the world. Press any button.\n";
+        std::cin >> input;
 
-        std::cout << '\n';
+        if (input == EXIT_BUTTON)
+            m_gameIsRunning = false;
+
+        startDuel(player);
     }
 }
 
@@ -48,25 +42,12 @@ void GameManager::printTitle()
 {
     std::cout << "---------------------\n";
     std::cout << "K O N E K O - D U E L\n";
-    std::cout << "---------------------\n";
-    std::cout << "\n";
-    printKeyboardOptions();
-    std::cout << "\n";
-}
-
-void GameManager::printPlayerStatus(Player player)
-{
-    std::cout << player.getName() << ": { ";
-    std::cout << "HP: " << player.getHealthPoints() << " | ";
-    std::cout << "ATK: " << player.getBaseAttack() << " | ";
-    std::cout << "LVL: " << player.getLevel() << " | ";
-    std::cout << "XP: " << player.getExperiencePoints() << " | ";
-    std::cout << "G: " << player.getGold() << " }\n";
+    std::cout << "---------------------\n\n";
 }
 
 std::string GameManager::getPlayerName()
 {
-    std::string playerName = "";
+    std::string playerName;
     std::cout << "What's your name?\n";
     std::cin >> playerName;
 
@@ -113,9 +94,9 @@ void GameManager::startDuel(Player &player)
     while (duelling)
     {
         // Player's turn.
-        printPlayerStatus(player);
+        player.printStatusBar();
         std::cout << "What's your next step?\n";
-        printKeyboardOptions();
+        printControlOptions();
         std::cin >> input;
 
         if (input == EXIT_BUTTON)
@@ -188,7 +169,7 @@ void GameManager::printEnemyStatus(Enemy enemy)
     std::cout << "LVL: " << enemy.getLevel() << " }\n";
 }
 
-void GameManager::printKeyboardOptions()
+void GameManager::printControlOptions()
 {
     std::cout << "a – Attack | f – Flee | x – Exit\n";
 }
