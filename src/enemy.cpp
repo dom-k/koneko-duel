@@ -1,4 +1,5 @@
 #include "enemy.h"
+#include <iostream>
 
 Enemy::Enemy(std::string name, int level, int healthPoints, int baseAttack, int goldToDrop, int experiencePointsToDrop)
 {
@@ -50,4 +51,12 @@ void Enemy::decreaseHealthPoints(int healthPointsToDecrease)
     {
         m_healthPoints -= healthPointsToDecrease;
     }
+}
+
+void Enemy::printStatusBar()
+{
+    std::cout << m_name << ": { ";
+    std::cout << "HP: " << m_healthPoints << " | ";
+    std::cout << "ATK: " << m_baseAttack << " | ";
+    std::cout << "LVL: " << m_level << " }\n";
 }

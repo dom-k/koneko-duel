@@ -12,6 +12,7 @@ public:
     int getBaseAttack();
     int getHealthPoints();
     void decreaseHealthPoints(int healthPointsToDecrease);
+    void printStatusBar();
 
 private:
     std::string m_name;
