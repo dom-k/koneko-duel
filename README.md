@@ -1,6 +1,6 @@
 # koneko-duel
 
-**note:** not finished, bad C++
+**note:** not finished yet 
 
 ![AppVeyor](https://img.shields.io/appveyor/ci/domkh/koneko-duel.svg)
 
