@@ -23,6 +23,7 @@ private:
 private:
     Player getNewPlayer();
     void printTitle();
+    void printIntro();
     void printPlayerStatusBar(Player player);
     std::string getPlayerName();
     bool enemyAppears();
