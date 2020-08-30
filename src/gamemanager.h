@@ -27,8 +27,9 @@ private:
     std::string getPlayerName();
     bool enemyAppears();
     void startDuel(Player &player);
+    void startDuelLoop(Player &player);
+    void handleFirstAttacks(Player &player, Enemy &enemy);
     bool enemyAttacksFirst();
     Enemy spawnNewEnemy(int level);
-    void printEnemyStatus(Enemy enemy);
     void printControlOptions();
 };

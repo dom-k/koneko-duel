@@ -34,6 +34,12 @@ int Player::getBaseAttack()
     return m_baseAttack;
 }
 
+int Player::getActualAttack()
+{
+    int actualAttack = RandomGenerator::GetInstance()->getRandomNumber(0, m_baseAttack);
+    return actualAttack;
+}
+
 int Player::getHealthPoints()
 {
     return m_healthPoints;

@@ -9,6 +9,7 @@ public:
     void addGold(int goldToAdd);
     int getGold();
     int getBaseAttack();
+    int getActualAttack();
     int getHealthPoints();
     void decreaseHealthPoints(int healthPointsToDecrease);
     void addExperiencePoints(int experiencePointsToAdd);

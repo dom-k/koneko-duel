@@ -10,9 +10,11 @@ public:
     int getLevel();
     int dropExperiencePoints();
     int getBaseAttack();
+    int getActualAttack();
     int getHealthPoints();
     void decreaseHealthPoints(int healthPointsToDecrease);
     void printStatusBar();
+    void printDefeatSummary();
 
 private:
     std::string m_name;
