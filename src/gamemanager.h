@@ -10,13 +10,17 @@ public:
     void run();
 
 private:
-    enum KEYBOARD_CONF
-    {
-        EXIT_BUTTON = 'x',
-        ATTACK_BUTTON = 'a',
-        FLEE_BUTTON = 'f',
-        WALK_BUTTON = 'w'
-    };
+    // enum KEYBOARD_CONF
+    // {
+    //     EXIT_BUTTON = 'x',
+    //     ATTACK_BUTTON = 'a',
+    //     FLEE_BUTTON = 'f',
+    //     WALK_BUTTON = 'w'
+    // };
+    std::string EXIT_BUTTON = "x";
+    std::string ATTACK_BUTTON = "a";
+    std::string FLEE_BUTTON = "f";
+    std::string WALK_BUTTON = "w";
     EnemyController enemyController;
     bool m_gameIsRunning;
 

@@ -1,31 +1,27 @@
 #pragma once
 #include <string>
+#include "shape.h"
 
-class Player
+class Player: public Shape
 {
 public:
-    Player(std::string name);
-    std::string getName();
-    void addGold(int goldToAdd);
+    Player(std::string name, int level = 1, int healthPoints = 10, int baseAttack = 1, int gold = 0): Shape(name, level, healthPoints, baseAttack) { 
+      m_gold = gold;
+      m_XP = 0;
+    }
+    void addXP(int points);
+    int getXP();
+    bool nextLevelReached();
+    void addGold(int gold);
     int getGold();
-    int getBaseAttack();
-    int getHealthPoints();
-    void decreaseHealthPoints(int healthPointsToDecrease);
-    void addExperiencePoints(int experiencePointsToAdd);
-    int getExperiencePoints();
-    int getLevel();
-    void printStatusBar();
+    std::string getStatusBar();
 
 private:
-    std::string m_name;
+    int m_XP;
+    int m_XPNeededForNextLevel;
     int m_gold;
-    int m_healthPoints;
-    int m_baseAttack;
-    int m_level;
-    int m_experiencePoints;
-    int m_experiencePointsNeededForNextLevel;
 
 private:
-    void levelUp();
-    void calculateAndSetExperiencePointsNeededForNextLevel();
+    bool levelUp();
+    void calculateXPNeededForNextLevel();
 };

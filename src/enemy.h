@@ -1,24 +1,19 @@
 #pragma once
 #include <string>
+#include "shape.h"
 
-class Enemy
+class Enemy: public Shape
 {
 public:
-    Enemy(std::string name, int level, int healthPoints, int baseAttack, int goldToDrop, int experiencePointsToDrop);
-    std::string getName();
+    Enemy(std::string name, int level, int healthPoints, int baseAttack, int goldToDrop, int xpToDrop): Shape(name, level, healthPoints, baseAttack) {
+      m_goldToDrop = goldToDrop;
+      m_xpToDrop = xpToDrop;
+    }
     int dropGold();
-    int getLevel();
-    int dropExperiencePoints();
-    int getBaseAttack();
-    int getHealthPoints();
-    void decreaseHealthPoints(int healthPointsToDecrease);
-    void printStatusBar();
+    int dropXP();
+    std::string getStatusBar();
 
 private:
-    std::string m_name;
-    int m_level;
-    int m_healthPoints;
-    int m_baseAttack;
     int m_goldToDrop;
-    int m_experiencePointsToDrop;
+    int m_xpToDrop;
 };

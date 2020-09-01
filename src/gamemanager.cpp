@@ -10,19 +10,19 @@ GameManager::GameManager()
 void GameManager::run()
 {
   Player player{getNewPlayer()};
-  char input;
+  std::string input; 
 
   printTitle();
   printIntro();
 
   while (true)
   {
-    player.printStatusBar();
+    std::cout << player.getStatusBar() << '\n';
 
-    std::cout << "You are wandering around. Press any button.\n";
-    std::cin >> input;
+    std::cout << "You are wandering around. Press any button and enter to continue.\n";
+    std::getline (std::cin, input);
 
-    if (input == EXIT_BUTTON)
+    if (input.compare(EXIT_BUTTON) == 0)
       break;
 
     startDuel(player);
@@ -75,19 +75,18 @@ void GameManager::startDuel(Player &player)
 
   std::cout << "Hey, watch out " << player.getName() << "! "
     << "An enemy is blocking the path:\n";
-    enemy.printStatusBar();
+  std::cout << enemy.getStatusBar() << '\n';
 
   if (enemyAttacksFirst())
   {
     std::cout << enemy.getName() << " quickly attacks!\n";
-    enemy.printStatusBar();
-    std::cout << '\n';
+    std::cout << enemy.getStatusBar() << '\n';
 
     int enemyActualAttack = RandomGenerator::GetInstance()->getRandomNumber(0, enemyBaseAttack);
     if (enemyActualAttack != 0)
     {
       std::cout << "Ouch! You lose " << enemyActualAttack << " HP!\n";
-      player.decreaseHealthPoints(enemyActualAttack);
+      player.decreaseHP(enemyActualAttack);
     }
     else
     {
@@ -99,17 +98,17 @@ void GameManager::startDuel(Player &player)
 
   while (1)
   {
-    player.printStatusBar();
+    std::cout << player.getStatusBar() << '\n';
     std::cout << "What are you going to do?\n";
     printControlOptions();
 
-    char input;
-    std::cin >> input;
+    std::string input;
+    std::getline(std::cin, input);
 
-    if (input == EXIT_BUTTON)
+    if (input.compare(EXIT_BUTTON) == 0)
       break;
 
-    if (input == ATTACK_BUTTON)
+    if (input.compare(ATTACK_BUTTON) == 0)
     {
       int playerBaseAttack{player.getBaseAttack()};
       int playerActualAttack{RandomGenerator::GetInstance()->getRandomNumber(0, playerBaseAttack)};
@@ -117,9 +116,9 @@ void GameManager::startDuel(Player &player)
       if (playerActualAttack != 0)
       {
         std::cout << "You attack the enemy with " << playerActualAttack << " ATK!\n";
-        enemy.decreaseHealthPoints(playerActualAttack);
+        enemy.decreaseHP(playerActualAttack);
 
-        if (enemy.getHealthPoints() <= 0)
+        if (enemy.getHP() <= 0)
         {
           int droppedGoldFromEnemy = enemy.dropGold();
           std::cout << "Enemy dies and drops " << droppedGoldFromEnemy << " G!\n";
@@ -133,7 +132,7 @@ void GameManager::startDuel(Player &player)
       }
     }
 
-    if (enemy.getHealthPoints() > 0)
+    if (enemy.getHP() > 0)
     {
       printEnemyStatus(enemy);
       std::cout << "Enemy's turn. Enemy attacks ...";
@@ -142,7 +141,7 @@ void GameManager::startDuel(Player &player)
       if (enemyActualAttack != 0)
       {
         std::cout << "Ouch! You lose " << enemyActualAttack << " HP!\n\n";
-        player.decreaseHealthPoints(enemyActualAttack);
+        player.decreaseHP(enemyActualAttack);
       }
       else
       {
@@ -152,7 +151,7 @@ void GameManager::startDuel(Player &player)
 
     std::cout << '\n';
 
-    if (input == FLEE_BUTTON)
+    if (input.compare(FLEE_BUTTON) == 0)
       std::cout << "You are trying to flee but the developer didn't implement fleeing yet. :/\n";
   }
 }
@@ -171,7 +170,7 @@ Enemy GameManager::spawnNewEnemy(int level)
 void GameManager::printEnemyStatus(Enemy enemy)
 {
   std::cout << "Enemy '" << enemy.getName() << "': { ";
-  std::cout << "HP: " << enemy.getHealthPoints() << " | ";
+  std::cout << "HP: " << enemy.getHP() << " | ";
   std::cout << "ATK: " << enemy.getBaseAttack() << " | ";
   std::cout << "LVL: " << enemy.getLevel() << " }\n";
 }

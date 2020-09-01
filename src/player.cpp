@@ -1,103 +1,53 @@
-#include "player.h"
 #include <iostream>
-
+#include "player.h"
 #include "randomgenerator.h"
 
 
-Player::Player(std::string name)
-{
-    m_name = name;
-    m_gold = 0;
-    m_level = 1;
-    m_baseAttack = 5;
-    m_healthPoints = 10;
-    m_experiencePoints = 0;
-}
-
-std::string Player::getName()
-{
-    return m_name;
-}
-
 void Player::addGold(int goldToAdd)
 {
-    m_gold += goldToAdd;
+  m_gold += goldToAdd;
 }
 
 int Player::getGold()
 {
-    return m_gold;
+  return m_gold;
 }
 
-int Player::getBaseAttack()
+void Player::addXP(int points)
 {
-    return m_baseAttack;
+  m_HP += points;
+  levelUp();
 }
 
-int Player::getHealthPoints()
+int Player::getXP()
 {
-    return m_healthPoints;
+  return m_XP;
 }
 
-void Player::decreaseHealthPoints(int healthPointsToDecrease)
+std::string Player::getStatusBar()
 {
-    if (m_healthPoints - healthPointsToDecrease <= 0)
-    {
-        m_healthPoints = 0;
-    }
-    else
-    {
-        m_healthPoints -= healthPointsToDecrease;
-    }
+  return m_name + ": { HP: " + std::to_string(m_HP) + 
+    ", ATK: " + std::to_string(m_baseAttack) + 
+    ", LVL: " + std::to_string(m_level) + 
+    ", XP: " + std::to_string(m_XP) + 
+    ", G: " + std::to_string(m_gold) +
+    " }";
 }
 
-void Player::addExperiencePoints(int experiencePointsToAdd)
+bool Player::levelUp()
 {
-    m_experiencePoints += experiencePointsToAdd;
+  if (m_XP < m_XPNeededForNextLevel)
+  {
+    return false;
+  }
 
-    if (m_experiencePoints >= m_experiencePointsNeededForNextLevel)
-    {
-        levelUp();
-    }
+  m_level += 1;
+  calculateXPNeededForNextLevel();
+
+  return true;
 }
 
-int Player::getExperiencePoints()
+void Player::calculateXPNeededForNextLevel()
 {
-    return m_experiencePoints;
-}
-
-int Player::getLevel()
-{
-    return m_level;
-}
-
-void Player::printStatusBar()
-{
-    std::cout << m_name << ": { ";
-    std::cout << "HP: " << m_healthPoints << " | ";
-    std::cout << "ATK: " << m_baseAttack << " | ";
-    std::cout << "LVL: " << m_level << " | ";
-    std::cout << "XP: " << m_experiencePoints << " | ";
-    std::cout << "G: " << m_gold << " }\n";
-}
-
-void Player::levelUp()
-{
-    m_level += 1;
-    calculateAndSetExperiencePointsNeededForNextLevel();
-
-    int minNewAttack = m_baseAttack + 3;
-    int maxNewAttack = m_baseAttack + 8;
-    int minNewHealth = m_healthPoints + 3;
-    int maxNewHealth = m_healthPoints + 10;
-
-    m_baseAttack = RandomGenerator::GetInstance()->getRandomNumber(
-        minNewAttack, maxNewAttack);
-    m_healthPoints = RandomGenerator::GetInstance()->getRandomNumber(
-        minNewHealth, maxNewHealth);
-}
-
-void Player::calculateAndSetExperiencePointsNeededForNextLevel()
-{
-    m_experiencePointsNeededForNextLevel = (m_level * 10) + (m_level * 5);
+  m_XPNeededForNextLevel = (m_level * 10) * 5;
 }
